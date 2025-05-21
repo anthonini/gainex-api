@@ -2,6 +2,7 @@ package com.anthonini.gainex.api.exceptionhandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -42,15 +43,19 @@ public class GainexExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	private List<Error> createErrorsList(BindingResult bindingResult) {
-		List<Error> erros = new ArrayList<>();
+		List<Error> errors = new ArrayList<>();
+		Locale locale = LocaleContextHolder.getLocale();
 		
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
-			String userMessage = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-			String developerMessage = fieldError.toString();
-			erros.add(new Error(userMessage, developerMessage));
+			String fieldKey = fieldError.getObjectName() + "." + fieldError.getField();
+	        String fieldLabel = messageSource.getMessage(fieldKey, null, fieldError.getField(), locale);
+	        String userMessage = fieldLabel + " " + messageSource.getMessage(fieldError, locale);
+	        String developerMessage = fieldError.toString();
+
+	        errors.add(new Error(userMessage, developerMessage));
 		}
 			
-		return erros;
+		return errors;
 	}
 
 	public static class Error {
