@@ -29,11 +29,19 @@ public class PersonService {
 	}
 
 	public Person update(Long id, @Valid Person person) {
-		Person savedPerson = personRepository.findById(id)
-				.orElseThrow(() -> new EmptyResultDataAccessException(1));
-		
+		Person savedPerson = findByIdToUpdate(id);		
 		BeanUtils.copyProperties(person, savedPerson, "id");
 		return personRepository.save(savedPerson);
 	}
+
+	public void updateActiveAttribute(Long id, Boolean active) {
+		Person pessoaSalva = findByIdToUpdate(id);
+		pessoaSalva.setActive(active);
+		personRepository.save(pessoaSalva);
+	}
 	
+	private Person findByIdToUpdate(Long id) {
+		return personRepository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException(1));
+	}
 }

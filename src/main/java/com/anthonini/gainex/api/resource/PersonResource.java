@@ -55,4 +55,10 @@ public class PersonResource {
 		Person updatedPerson = personService.update(id, pessoa);
 		return ResponseEntity.ok(updatedPerson);
 	}
+	
+	@PutMapping("/{id}/active")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateActiveAttribute(@PathVariable Long id, @RequestBody Boolean active) {
+		personService.updateActiveAttribute(id, active);
+	}
 }
