@@ -33,7 +33,7 @@ public class GainexExceptionHandler extends ResponseEntityExceptionHandler {
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 		
 		String userMessage = messageSource.getMessage("message.invalid", null, LocaleContextHolder.getLocale());
-		String developerMessage = ex.getCause().toString();
+		String developerMessage = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
 		return handleExceptionInternal(ex, new Error(userMessage, developerMessage), headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
