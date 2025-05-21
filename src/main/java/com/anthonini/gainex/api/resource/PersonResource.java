@@ -32,21 +32,21 @@ public class PersonResource {
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Person> buscarPeloCodigo(@PathVariable Long id) {
+	public ResponseEntity<Person> findById(@PathVariable Long id) {
 		Person person = personService.findById(id);
 		return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
 	}
 	
 	@PostMapping
-	public ResponseEntity<Person> criar(@Valid @RequestBody Person Person, HttpServletResponse response) {
-		Person createdPerson = personService.save(Person);
+	public ResponseEntity<Person> create(@Valid @RequestBody Person person, HttpServletResponse response) {
+		Person createdPerson = personService.save(person);
 		publisher.publishEvent(new CreatedResourceEvent(this, response, createdPerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdPerson);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long id) {
+	public void delete(@PathVariable Long id) {
 		personService.deleteById(id);
 	}
 	

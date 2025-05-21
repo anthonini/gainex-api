@@ -20,12 +20,12 @@ public class TransactionResource {
 	private TransactionService service;
 
 	@GetMapping
-	public List<Transaction> listar() {
+	public List<Transaction> list() {
 		return service.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Transaction> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<Transaction> findById(@PathVariable Long id) {
 		Transaction transaction = service.findById(id);
 		return transaction != null ? ResponseEntity.ok(transaction) : ResponseEntity.notFound().build();
 	}
