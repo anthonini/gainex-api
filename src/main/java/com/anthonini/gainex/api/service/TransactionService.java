@@ -3,6 +3,8 @@ package com.anthonini.gainex.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.anthonini.gainex.api.model.Person;
@@ -37,8 +39,8 @@ public class TransactionService {
 		return repository.save(transaction);
 	}
 
-	public List<Transaction> filter(TransactionFilter filter) {
-		return repository.filter(filter);
+	public Page<Transaction> filter(TransactionFilter filter, Pageable pageable) {
+		return repository.filter(filter, pageable);
 	}
 
 	public void deleteById(Long id) {

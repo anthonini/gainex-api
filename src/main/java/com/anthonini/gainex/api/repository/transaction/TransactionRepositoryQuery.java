@@ -1,11 +1,12 @@
 package com.anthonini.gainex.api.repository.transaction;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.anthonini.gainex.api.model.Transaction;
 import com.anthonini.gainex.api.repository.filter.TransactionFilter;
 
 public interface TransactionRepositoryQuery {
 
-	public List<Transaction> filter(TransactionFilter filter);
+	public Page<Transaction> filter(TransactionFilter filter, Pageable pageable);
 }
