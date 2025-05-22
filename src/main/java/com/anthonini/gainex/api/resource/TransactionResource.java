@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anthonini.gainex.api.event.CreatedResourceEvent;
 import com.anthonini.gainex.api.exceptionhandler.GainexExceptionHandler.Error;
 import com.anthonini.gainex.api.model.Transaction;
+import com.anthonini.gainex.api.repository.filter.TransactionFilter;
 import com.anthonini.gainex.api.service.TransactionService;
 import com.anthonini.gainex.api.service.exception.NonExistentOrInactivePerson;
 
@@ -40,8 +41,8 @@ public class TransactionResource {
 	private MessageSource messageSource;
 
 	@GetMapping
-	public List<Transaction> list() {
-		return service.findAll();
+	public List<Transaction> filter(TransactionFilter filter) {
+		return service.filter(filter);
 	}
 	
 	@GetMapping("/{id}")

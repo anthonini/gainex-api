@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.anthonini.gainex.api.model.Person;
 import com.anthonini.gainex.api.model.Transaction;
 import com.anthonini.gainex.api.repository.TransactionRepository;
+import com.anthonini.gainex.api.repository.filter.TransactionFilter;
 import com.anthonini.gainex.api.service.exception.NonExistentOrInactivePerson;
 
 @Service
@@ -34,5 +35,9 @@ public class TransactionService {
 		}
 		
 		return repository.save(transaction);
+	}
+
+	public List<Transaction> filter(TransactionFilter filter) {
+		return repository.filter(filter);
 	}
 }
