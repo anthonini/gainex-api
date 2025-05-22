@@ -40,4 +40,8 @@ public class TransactionService {
 	public List<Transaction> filter(TransactionFilter filter) {
 		return repository.filter(filter);
 	}
+
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 }
