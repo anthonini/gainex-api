@@ -21,4 +21,8 @@ public class TransactionService {
 	public Transaction findById(Long id) {
 		return repository.findById(id).orElse(null);
 	}
+
+	public Transaction save(Transaction transaction) {
+		return repository.save(transaction);
+	}
 }
