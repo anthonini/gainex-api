@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +28,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 @Profile("oauth-security")
 @Configuration
 @EnableWebSecurity
-//@PrePostMethodSecurityConfiguration
+@EnableMethodSecurity
 public class ResourceServerConfig {
 
 	@Bean
@@ -42,6 +43,21 @@ public class ResourceServerConfig {
                             .jwtAuthenticationConverter(jwtAuthenticationConverter())
                         )
                     );
+        
+        http.logout(
+    			httpSecurityLogoutConfigurer -> {
+    				httpSecurityLogoutConfigurer.logoutSuccessHandler(
+    						(httpServletRequest, httpServletResponse, authentication) -> {
+    							String referer = httpServletRequest.getHeader("referer");
+    							if(referer != null) {
+    								httpServletResponse.sendRedirect(referer);
+    							} else {
+    								httpServletResponse.sendRedirect(httpServletRequest.getContextPath());
+    							}
+    						}
+    				);
+    			}
+    		);
         
         return http.formLogin(Customizer.withDefaults()).build();
     }
