@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.repository.transaction;
+package com.anthonini.gainex.repository.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
-import com.anthonini.gainex.api.model.Transaction;
-import com.anthonini.gainex.api.repository.filter.TransactionFilter;
+import com.anthonini.gainex.model.Transaction;
+import com.anthonini.gainex.repository.filter.TransactionFilter;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

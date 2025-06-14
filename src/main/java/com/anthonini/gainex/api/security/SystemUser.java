@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import com.anthonini.gainex.api.model.User;
+import com.anthonini.gainex.model.User;
 
 public class SystemUser extends org.springframework.security.core.userdetails.User {
 

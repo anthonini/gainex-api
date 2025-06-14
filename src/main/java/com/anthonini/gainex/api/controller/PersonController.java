@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.resource;
+package com.anthonini.gainex.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anthonini.gainex.api.event.CreatedResourceEvent;
-import com.anthonini.gainex.api.model.Person;
-import com.anthonini.gainex.api.service.PersonService;
+import com.anthonini.gainex.model.Person;
+import com.anthonini.gainex.service.PersonService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/persons")
-public class PersonResource {
+public class PersonController {
 	
 	@Autowired
 	private PersonService personService;

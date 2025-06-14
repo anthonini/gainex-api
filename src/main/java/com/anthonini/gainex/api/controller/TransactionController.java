@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.resource;
+package com.anthonini.gainex.api.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,17 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.anthonini.gainex.api.event.CreatedResourceEvent;
 import com.anthonini.gainex.api.exceptionhandler.GainexExceptionHandler.Error;
-import com.anthonini.gainex.api.model.Transaction;
-import com.anthonini.gainex.api.repository.filter.TransactionFilter;
-import com.anthonini.gainex.api.service.TransactionService;
-import com.anthonini.gainex.api.service.exception.NonExistentOrInactivePerson;
+import com.anthonini.gainex.model.Transaction;
+import com.anthonini.gainex.repository.filter.TransactionFilter;
+import com.anthonini.gainex.service.TransactionService;
+import com.anthonini.gainex.service.exception.NonExistentOrInactivePerson;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/transactions")
-public class TransactionResource {
+public class TransactionController {
 	
 	@Autowired
 	private TransactionService service;

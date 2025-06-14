@@ -1,12 +1,12 @@
-package com.anthonini.gainex.api.service;
+package com.anthonini.gainex.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.anthonini.gainex.api.model.Person;
-import com.anthonini.gainex.api.repository.PersonRepository;
+import com.anthonini.gainex.model.Person;
+import com.anthonini.gainex.repository.PersonRepository;
 
 import jakarta.validation.Valid;
 

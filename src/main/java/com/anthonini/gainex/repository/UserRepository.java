@@ -1,10 +1,10 @@
-package com.anthonini.gainex.api.repository;
+package com.anthonini.gainex.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.anthonini.gainex.api.model.User;
+import com.anthonini.gainex.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 

@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.repository.filter;
+package com.anthonini.gainex.repository.filter;
 
 import java.time.LocalDate;
 

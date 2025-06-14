@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.anthonini.gainex.api.model.User;
-import com.anthonini.gainex.api.repository.UserRepository;
+import com.anthonini.gainex.model.User;
+import com.anthonini.gainex.repository.UserRepository;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {

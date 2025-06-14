@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.model;
+package com.anthonini.gainex.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

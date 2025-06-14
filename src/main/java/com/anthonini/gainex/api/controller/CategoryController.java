@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.resource;
+package com.anthonini.gainex.api.controller;
 
 import java.util.List;
 
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anthonini.gainex.api.event.CreatedResourceEvent;
-import com.anthonini.gainex.api.model.Category;
-import com.anthonini.gainex.api.repository.CategoryRepository;
+import com.anthonini.gainex.model.Category;
+import com.anthonini.gainex.repository.CategoryRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/categories")
-public class CategoryResource {
+public class CategoryController {
 
 	@Autowired
 	private CategoryRepository categoryRepository;

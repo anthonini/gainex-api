@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.service;
+package com.anthonini.gainex.service;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.anthonini.gainex.api.model.Person;
-import com.anthonini.gainex.api.model.Transaction;
-import com.anthonini.gainex.api.repository.TransactionRepository;
-import com.anthonini.gainex.api.repository.filter.TransactionFilter;
-import com.anthonini.gainex.api.service.exception.NonExistentOrInactivePerson;
+import com.anthonini.gainex.model.Person;
+import com.anthonini.gainex.model.Transaction;
+import com.anthonini.gainex.repository.TransactionRepository;
+import com.anthonini.gainex.repository.filter.TransactionFilter;
+import com.anthonini.gainex.service.exception.NonExistentOrInactivePerson;
 
 @Service
 public class TransactionService {

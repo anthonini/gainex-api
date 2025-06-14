@@ -1,4 +1,4 @@
-package com.anthonini.gainex.api.model;
+package com.anthonini.gainex.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
