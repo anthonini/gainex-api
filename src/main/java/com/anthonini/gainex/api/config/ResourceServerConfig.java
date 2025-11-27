@@ -33,18 +33,17 @@ import com.nimbusds.jose.proc.SecurityContext;
 public class ResourceServerConfig {
 
 	@Bean
-	@Order(2)
+	@Order(1)
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+		SecurityConfigRules.apply(http);
+		
         http
-        	.authorizeHttpRequests(authz -> authz
-        			.requestMatchers("/categories").permitAll()
-        			.anyRequest().authenticated())
-        		.csrf(csrf -> csrf.disable())
-        		.oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwt -> jwt
-                            .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                        )
-                    );
+    		.csrf(csrf -> csrf.disable())
+    		.oauth2ResourceServer(oauth2 -> oauth2
+                    .jwt(jwt -> jwt
+                        .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                    )
+                );
         
         http.logout(
     			httpSecurityLogoutConfigurer -> {
