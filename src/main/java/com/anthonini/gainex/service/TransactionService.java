@@ -11,6 +11,7 @@ import com.anthonini.gainex.model.Person;
 import com.anthonini.gainex.model.Transaction;
 import com.anthonini.gainex.repository.TransactionRepository;
 import com.anthonini.gainex.repository.filter.TransactionFilter;
+import com.anthonini.gainex.repository.projection.TransactionResume;
 import com.anthonini.gainex.service.exception.NonExistentOrInactivePerson;
 
 @Service
@@ -45,5 +46,9 @@ public class TransactionService {
 
 	public void deleteById(Long id) {
 		repository.deleteById(id);
+	}
+
+	public Page<TransactionResume> resume(TransactionFilter filter, Pageable pageable) {
+		return repository.resume(filter, pageable);
 	}
 }

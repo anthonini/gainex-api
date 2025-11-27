@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import com.anthonini.gainex.model.Transaction;
 import com.anthonini.gainex.repository.filter.TransactionFilter;
+import com.anthonini.gainex.repository.projection.TransactionResume;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -34,6 +35,28 @@ public class TransactionRepositoryQueryImpl implements TransactionRepositoryQuer
 		criteria.where(predicates);
 		
 		TypedQuery<Transaction> query = manager.createQuery(criteria);
+		addPaginationRestrictions(query, pageable);
+
+		return new PageImpl<>(query.getResultList(), pageable, total(filter));
+	}
+	
+	@Override
+	public Page<TransactionResume> resume(TransactionFilter filter, Pageable pageable) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<TransactionResume> criteria = builder.createQuery(TransactionResume.class);
+		Root<Transaction> root = criteria.from(Transaction.class);
+		
+		criteria.select(builder.construct(TransactionResume.class
+				, root.get("id"), root.get("description")
+				, root.get("dueDate"), root.get("paymentDate")
+				, root.get("amount"), root.get("type")
+				, root.get("category").get("name")
+				, root.get("person").get("name")));
+		
+		Predicate[] predicates = createRestriction(filter, builder, root);
+		criteria.where(predicates);
+		
+		TypedQuery<TransactionResume> query = manager.createQuery(criteria);
 		addPaginationRestrictions(query, pageable);
 
 		return new PageImpl<>(query.getResultList(), pageable, total(filter));
@@ -63,7 +86,7 @@ public class TransactionRepositoryQueryImpl implements TransactionRepositoryQuer
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
 	
-	private void addPaginationRestrictions(TypedQuery<Transaction> query, Pageable pageable) {
+	private void addPaginationRestrictions(TypedQuery<?> query, Pageable pageable) {
 		int actualPage = pageable.getPageNumber();
 		int totalRecordsPerPage = pageable.getPageSize();
 		int pageFirstRecord = actualPage * totalRecordsPerPage;

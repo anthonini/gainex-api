@@ -25,6 +25,7 @@ import com.anthonini.gainex.api.event.CreatedResourceEvent;
 import com.anthonini.gainex.api.exceptionhandler.GainexExceptionHandler.Error;
 import com.anthonini.gainex.model.Transaction;
 import com.anthonini.gainex.repository.filter.TransactionFilter;
+import com.anthonini.gainex.repository.projection.TransactionResume;
 import com.anthonini.gainex.service.TransactionService;
 import com.anthonini.gainex.service.exception.NonExistentOrInactivePerson;
 
@@ -47,6 +48,11 @@ public class TransactionController {
 	@GetMapping
 	public Page<Transaction> filter(TransactionFilter filter, Pageable pageable) {
 		return service.filter(filter, pageable);
+	}
+	
+	@GetMapping(params = "resume")
+	public Page<TransactionResume> resume(TransactionFilter filter, Pageable pageable) {
+		return service.resume(filter, pageable);
 	}
 	
 	@GetMapping("/{id}")
